@@ -1,19 +1,31 @@
 import * as constants from '../constants/Constants'
 
-export interface ISetHunger{
-    type: constants.SET_HUNGER;
-    hunger: number;
-}
-
 export interface ISetHappiness{
     type: constants.SET_HAPPINESS;
     happiness: number;
+}
+
+export interface ISetHunger{
+    type: constants.SET_HUNGER;
+    hunger: number;
 }
 
 export interface ISetMoney{
     type: constants.SET_MONEY;
     money: number;
 }
+
+export interface ISetHappinessTimer{
+    type: constants.SET_HAPPINESS_TIMER;
+    timerID: NodeJS.Timer
+}
+
+export interface ISetHungerTimer{
+    type: constants.SET_HUNGER_TIMER;
+    timerID: NodeJS.Timer
+}
+
+
 
 export const SetHunger = (hunger: number) => ({
     hunger,
@@ -30,8 +42,19 @@ export const SetMoney = (money: number) => ({
     type: constants.SET_MONEY
 });
 
+export const SetHappinessTimer = (timerID: NodeJS.Timer) => ({
+    timerID,
+    type: constants.SET_HAPPINESS_TIMER
+});
+
+export const SetHungerTimer = (timerID: NodeJS.Timer) => ({
+    timerID,
+    type: constants.SET_HUNGER_TIMER
+});
 
 export type ActionTypes = 
 ISetHappiness |
+ISetHappinessTimer |
 ISetHunger |
-ISetMoney ;
+ISetHungerTimer |
+ISetMoney;

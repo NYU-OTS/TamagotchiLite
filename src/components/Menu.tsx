@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import './Menu.css'
 
-import {SetHappiness, SetHunger, SetMoney} from '../actions/Actions'
+import {SetHappiness, SetHappinessTimer, SetHunger, SetHungerTimer, SetMoney} from '../actions/Actions'
 import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'
@@ -11,16 +11,22 @@ import shovel from '../images/shovel.png'
 
 export interface IMenuProps{
     happiness: number,
+    happinessID: NodeJS.Timer,
     hunger: number, 
-    money: number
+    hungerID: NodeJS.Timer,
+    money: number,    
 
     setHunger: (hunger: number) => void,
+    setHungerTimer: (timerID: NodeJS.Timer) => void,
     setHappiness: (happiness: number) => void, 
+    setHappinessTimer: (timerID: NodeJS.Timer) => void,
     setMoney: (money: number) => void,
     feed: () => void,
     play: () => void,
     work: () => void,
-    heal: () => void
+    heal: () => void,
+    depleteHunger: () => void,
+    depleteHappiness: () => void
 }
 
 class Menu extends React.Component<IMenuProps, {}> {
@@ -30,8 +36,23 @@ class Menu extends React.Component<IMenuProps, {}> {
         this.props.play.bind(this);
         this.props.heal.bind(this);
         this.props.work.bind(this);
+        this.props.depleteHunger.bind(this);
+        this.props.depleteHappiness.bind(this);
     }
 
+      // Decrement the pet's hunger and happiness values over time
+    public componentDidMount() {
+        const timerId = setInterval( this.props.depleteHappiness, 1000);
+        this.props.setHappinessTimer(timerId);
+    }
+
+    public componentWillUnmount() {
+        /*
+        if(this.props.happinessID) {
+            clearInterval(this.props.happinessID);
+        }
+        */
+    }
 
 
     public render() { 
@@ -63,7 +84,9 @@ class Menu extends React.Component<IMenuProps, {}> {
 
 const mapStateToProps = (state:any) => ({
     happiness: state.happiness,
+    happinessID: state.happinessID,
     hunger: state.hunger,
+    hungerID: state.hungerID,
     money: state.money
 })
 
@@ -71,8 +94,11 @@ const mapStateToProps = (state:any) => ({
 const mapDispatchToProps = (dispatch: (action: any) => void) => {
     return{
         setHappiness: (happiness: number) => dispatch(SetHappiness(happiness)),
+        setHappinessTimer: (timerID: NodeJS.Timer) => dispatch(SetHappinessTimer(timerID)),
         setHunger: (hunger: number) => dispatch(SetHunger(hunger)),
+        setHungerTimer: (timerID: NodeJS.Timer) => dispatch(SetHungerTimer(timerID)),
         setMoney: (money: number) => dispatch(SetMoney(money))
+
     }
   }
   
@@ -107,7 +133,20 @@ const mapDispatchToProps = (dispatch: (action: any) => void) => {
                 dp.setHunger(sp.hunger + 5);
                 dp.setMoney(sp.money - 5);
             }
+        },
+
+        depleteHunger: () => {
+            if (sp.hunger > 0){
+                dp.setHunger(sp.hunger - 1);
+            }
+        },
+
+        depleteHappiness: () => {
+            if (sp.happiness > 0){
+                dp.setHappiness(sp.happiness - 1);
+            }
         }
+        
     };
   
   }

@@ -5,11 +5,15 @@ import * as constants from '../constants/Constants'
 
 const initialState: {
     happiness: number,
+    happinessTimer: NodeJS.Timer|null,
     hunger: number,
+    hungerTimer: NodeJS.Timer|null,
     money: number} =
 
     {happiness: 5,
+    happinessTimer : null,
     hunger: 3,
+    hungerTimer : null,
     money: 0
 }
 
@@ -40,8 +44,28 @@ export function moneyReducer(state = initialState.money, action: ActionTypes): n
     }
 }
 
+export function happinessTimerReducer(state = initialState.happinessTimer, action: ActionTypes): NodeJS.Timer|null {
+    switch (action.type){
+        case constants.SET_HAPPINESS_TIMER:
+            return action.timerID;
+        default:
+            return state;        
+    }
+}
+
+export function hungerTimerReducer(state = initialState.hungerTimer, action: ActionTypes): NodeJS.Timer|null {
+    switch (action.type){
+        case constants.SET_HUNGER_TIMER:
+            return action.timerID;
+        default:
+            return state;        
+    }
+}
+
 export default combineReducers({
     happiness: happinessReducer,
+    happinessTimer: happinessTimerReducer,
     hunger: hungerReducer, 
+    hungerTimer: hungerTimerReducer,
     money: moneyReducer
 })

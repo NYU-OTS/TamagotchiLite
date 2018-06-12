@@ -12,37 +12,10 @@ export interface IProps{
   happiness: number,
 }
 
-export interface IState{
-  hungerTimer: any,
-  happyTimer: any
-}
-
-class App extends React.Component<IProps, IState> {
+class App extends React.Component<IProps, {}> {
   constructor(props: IProps){
     super(props);
-    this.state = {
-      happyTimer: 0,
-      hungerTimer: 0      
-    }
   }
-
-  /*
-  // Decrement the pet's hunger and happiness values over time
-  public componentDidMount() {
-    if (this.props.hungerDeplete && this.props.happyDeplete){
-      this.setState({
-          happyTimer: this.props.happyDeplete ? setInterval( () => this.props.happyDeplete(this.props.happiness), 5000) : 0,
-          hungerTimer: this.props.hungerDeplete ? setInterval( () => this.props.hungerDeplete(this.props.hunger), 5000) : 0,
-          // happyTimer: setInterval( () => this.props.happyDeplete(this.props), 7500)
-      });
-      }
-    }
-
-  public componentWillUnmount() {
-    clearInterval(this.state.hungerTimer);
-    clearInterval(this.state.happyTimer);
-  }
-  */
 
   public render() {
     return (
