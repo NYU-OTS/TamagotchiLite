@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
-import {ActionTypes} from '../actions'
-import * as constants from '../constants/index'
+import {ActionTypes} from '../actions/Actions'
+import * as constants from '../constants/Constants'
 
 const initialState: {
     happiness: number,

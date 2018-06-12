@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 
-import {IStoreState} from '../types'
+import {IStoreState} from '../types/Types'
 
 export interface ICounterProps{
     hunger: number,

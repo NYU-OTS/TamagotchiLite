@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import './Menu.css'
 
-import {SetHappiness, SetHunger, SetMoney} from '../actions'
+import {SetHappiness, SetHunger, SetMoney} from '../actions/Actions'
 import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'

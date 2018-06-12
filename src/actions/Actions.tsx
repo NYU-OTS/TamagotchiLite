@@ -1,4 +1,4 @@
-import * as constants from '../constants'
+import * as constants from '../constants/Constants'
 
 export interface ISetHunger{
     type: constants.SET_HUNGER;
