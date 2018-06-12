@@ -2,7 +2,6 @@ import {combineReducers} from 'redux'
 
 import {ActionTypes} from '../actions'
 import * as constants from '../constants/index'
-import {IStoreState} from '../types/index'
 
 const initialState: {
     happiness: number,
@@ -13,6 +12,42 @@ const initialState: {
     hunger: 0,
     money: 0
 }
+
+export function hungerReducer(state = initialState.hunger, action: ActionTypes): number{
+    switch (action.type){
+        case constants.SET_HUNGER:
+            return action.hunger;
+        default:
+            return state;        
+    }
+}
+
+export function happinessReducer(state = initialState.happiness, action: ActionTypes): number{
+    switch (action.type){
+        case constants.SET_HAPPINESS:
+            return action.happiness;
+        default:
+            return state;        
+    }
+}
+
+export function moneyReducer(state = initialState.money, action: ActionTypes): number{
+    switch (action.type){
+        case constants.SET_MONEY:
+            return action.money;
+        default:
+            return state;        
+    }
+}
+
+export default combineReducers({
+    happiness: happinessReducer,
+    hunger: hungerReducer, 
+    money: moneyReducer
+})
+
+
+/*
 export function feedReducer(state = initialState, action: ActionTypes): IStoreState{
     switch (action.type){
         case constants.HUNGER_DEPLETE:
