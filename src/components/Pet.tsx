@@ -1,66 +1,56 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
+import {createSelector} from 'reselect'
 
 import bored from '../images/_bored.png'
 import excited from '../images/_excited.png'
 import happy from '../images/_happy.png'
 import hungry from '../images/_hungry.png'
 import sick from '../images/_rip.png'
+import {IStoreState} from '../types/Types'
+
 
 export interface IPetProps{
+    face: any,
     happiness: number,
     hunger: number
 }
 
-export interface IPetState{
-    face: any
-}
-
-class Pet extends React.Component<IPetProps, IPetState>{
+class Pet extends React.Component<IPetProps, {}>{
     constructor(props: IPetProps){
         super(props);
-        this.state = {
-            face: happy
-        }
-    }
-
-    public componentDidMount(){
-        if (this.props.hunger === 10 && this.props.happiness === 10){
-            this.setState({
-                face: excited
-            });
-        }
-        else if (this.props.hunger === 0 && this.props.happiness === 0){
-            this.setState({
-                face: sick
-            });
-        }
-        else if (this.props.hunger <= 5){
-            this.setState({
-                face: hungry
-            });
-        }
-        else if (this.props.happiness <= 5){
-            this.setState({
-                face: bored
-            });
-        }
-
-        else{
-            this.setState({
-                face: happy
-            });
-        }
     }
 
     public render(){
         return(
-            <img src={this.state.face} alt="pet" className="imageSize"/>
+            <img src={this.props.face} alt="pet" className="imageSize"/>
         )
     }
 }
 
-const mapStateToProps = (state:any) => ({
+const faceSelector = createSelector(
+    [(s: IStoreState) => s.hunger, (s: IStoreState) => s.happiness ],
+    (hunger: IStoreState["hunger"], happiness: IStoreState["happiness"]) => {
+       if (hunger === 10 && happiness === 10){
+           return excited;
+       }
+       else if (hunger === 0 && happiness === 0){
+           return sick;
+       }
+       else if (hunger <= 5){
+           return hungry;
+       }
+       else if (happiness <= 5){
+           return bored;
+       }
+       else{
+           return happy;
+       }
+    }
+)
+
+const mapStateToProps = (state:IStoreState) => ({
+    face: faceSelector(state),
     happiness: state.happiness,
     hunger: state.hunger
 })
