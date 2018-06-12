@@ -16,24 +16,24 @@ export interface ISetMoney{
 }
 
 export const SetHunger = (hunger: number) => ({
-    type: constants.SET_HUNGER,
-    hunger
+    hunger,
+    type: constants.SET_HUNGER
 });
 
 export const SetHappiness = (happiness: number) => ({
-    type: constants.SET_HAPPINESS,
-    happiness
+    happiness,
+    type: constants.SET_HAPPINESS
 });
 
 export const SetMoney = (money: number) => ({
-    type: constants.SET_MONEY,
-    money
+    money,
+    type: constants.SET_MONEY
 });
 
 
 export type ActionTypes = 
-ISetHunger |
 ISetHappiness |
+ISetHunger |
 ISetMoney ;
 
 

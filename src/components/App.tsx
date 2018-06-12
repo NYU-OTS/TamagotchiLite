@@ -7,13 +7,9 @@ import Header from './Header'
 import Menu from './Menu'
 import Pet from './Pet'
 
-import {happyDeplete, hungerDeplete} from '../actions'
-
 export interface IProps{
   hunger: number,
   happiness: number,
-  hungerDeplete: (hunger: number) => number,
-  happyDeplete: (happiness: number) => number
 }
 
 export interface IState{
@@ -29,6 +25,8 @@ class App extends React.Component<IProps, IState> {
       hungerTimer: 0      
     }
   }
+
+  /*
   // Decrement the pet's hunger and happiness values over time
   public componentDidMount() {
     if (this.props.hungerDeplete && this.props.happyDeplete){
@@ -44,6 +42,7 @@ class App extends React.Component<IProps, IState> {
     clearInterval(this.state.hungerTimer);
     clearInterval(this.state.happyTimer);
   }
+  */
 
   public render() {
     return (
@@ -63,16 +62,4 @@ const mapStateToProps = (state:any) => ({
   money: state.money
 })
 
-
-const mapDispatchToProps = (dispatch: (action: any) => void) => {
-  return{
-    happyDeplete: (hunger: number) => dispatch(happyDeplete(hunger)),
-    hungerDeplete: (happiness: number) => dispatch(hungerDeplete(happiness))
-  }
-}
-
-const mergeProps = (sp: any, dp: any, op: any) => {
-  return {...sp, ...dp, ...op};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(App);
+export default connect(mapStateToProps)(App);

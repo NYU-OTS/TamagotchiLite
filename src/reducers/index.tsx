@@ -8,8 +8,8 @@ const initialState: {
     hunger: number,
     money: number} =
 
-    {happiness: 0,
-    hunger: 0,
+    {happiness: 5,
+    hunger: 3,
     money: 0
 }
 
@@ -137,3 +137,4 @@ export default combineReducers({
     hunger: feedReducer, 
     money: moneyReducer
 })
+*/

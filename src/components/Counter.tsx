@@ -15,7 +15,6 @@ class Counter extends React.Component<ICounterProps, {}>{
     }
 
     public render(){
-        console.log(this.props);
         return(
             <div>
                 <p>Hunger: {this.props.hunger.toString()} </p>
