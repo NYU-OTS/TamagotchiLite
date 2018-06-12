@@ -1,25 +1,63 @@
 import * as constants from '../constants'
-import {IStoreState} from '../types'
 
+export interface ISetHunger{
+    type: constants.SET_HUNGER;
+    hunger: number;
+}
+
+export interface ISetHappiness{
+    type: constants.SET_HAPPINESS;
+    happiness: number;
+}
+
+export interface ISetMoney{
+    type: constants.SET_MONEY;
+    money: number;
+}
+
+export const SetHunger = (hunger: number) => ({
+    type: constants.SET_HUNGER,
+    hunger
+});
+
+export const SetHappiness = (happiness: number) => ({
+    type: constants.SET_HAPPINESS,
+    happiness
+});
+
+export const SetMoney = (money: number) => ({
+    type: constants.SET_MONEY,
+    money
+});
+
+
+export type ActionTypes = 
+ISetHunger |
+ISetHappiness |
+ISetMoney ;
+
+
+
+/*
 // Interfaces //
 export interface IFeedPet{
     type: constants.FEED;
-    payload: IStoreState;
+    payload: number;
 }
 
 export interface IPlayPet{
     type: constants.PLAY;
-    payload: IStoreState;
+    payload: number;
 }
 
 export interface IWorkPet{
     type: constants.WORK;
-    payload: IStoreState;
+    payload: number;
 }
 
 export interface IHealPet{
     type: constants.HEAL;
-    payload: IStoreState;
+    payload: number;
 }
 
 export interface IHungerDeplete{
@@ -32,10 +70,11 @@ export interface IHappyDeplete{
     happiness: number;
 }
 
+
 // Action Creators //
-export const feedPet = (state: IStoreState) => ({
+export const feedPet = (hunger: number) => ({
     type: constants.FEED,
-    payload: state
+    payload: 
 });
 
 export const playPet = (state: IStoreState) => ({
@@ -77,3 +116,5 @@ export type ActionTypes =
     
 
 export default ActionTypes;
+
+*/
