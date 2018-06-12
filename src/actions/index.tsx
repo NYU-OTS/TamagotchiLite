@@ -4,18 +4,22 @@ import {IStoreState} from '../types'
 // Interfaces //
 export interface IFeedPet{
     type: constants.FEED;
+    payload: IStoreState;
 }
 
 export interface IPlayPet{
     type: constants.PLAY;
+    payload: IStoreState;
 }
 
 export interface IWorkPet{
     type: constants.WORK;
+    payload: IStoreState;
 }
 
 export interface IHealPet{
     type: constants.HEAL;
+    payload: IStoreState;
 }
 
 export interface IHungerDeplete{
@@ -28,34 +32,26 @@ export interface IHappyDeplete{
     happiness: number;
 }
 
-// Functions //
-export function feedPet(state: IStoreState) {
-    return {
-        state,
-        type: constants.FEED
-    };
-}
+// Action Creators //
+export const feedPet = (state: IStoreState) => ({
+    type: constants.FEED,
+    payload: state
+});
 
-export function playPet(state: IStoreState){
-    return {
-        state,
-        type: constants.PLAY
-    }
-}
+export const playPet = (state: IStoreState) => ({
+    type: constants.PLAY,
+    payload: state
+});
 
-export function workPet(state: IStoreState){
-    return {
-        state,
-        type: constants.WORK
-    }
-}
+export const workPet = (state: IStoreState) => ({
+    type: constants.WORK,
+    payload: state
+});
 
-export function healPet(state: IStoreState){
-    return {
-        state,
-        type: constants.HEAL
-    }
-}
+export const healPet = (state: IStoreState) => ({
+    type: constants.HEAL,
+    payload: state
+});
 
 export function hungerDeplete(hunger: number){
     return {
