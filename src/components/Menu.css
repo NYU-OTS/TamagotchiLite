@@ -1,0 +1,14 @@
+#myMenu{
+    margin:auto;
+    text-align:center;
+}
+
+figure{
+    display:inline-block;
+}
+
+.icon{
+    width:80px;
+    height:80px;
+    padding:2%;
+}
