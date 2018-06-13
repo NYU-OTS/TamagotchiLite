@@ -1,7 +1,7 @@
 export interface IStoreState{
     happiness: number,
-    happinessID?: number,
+    happinessID: number| null,
     hunger: number,
-    hungerID?: number,
+    hungerID: number| null,
     money: number
 }

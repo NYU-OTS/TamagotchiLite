@@ -17,12 +17,12 @@ export interface ISetMoney{
 
 export interface ISetHappinessTimer{
     type: constants.SET_HAPPINESS_TIMER;
-    timerID: NodeJS.Timer
+    timerID: number;
 }
 
 export interface ISetHungerTimer{
     type: constants.SET_HUNGER_TIMER;
-    timerID: NodeJS.Timer
+    timerID: number;
 }
 
 
@@ -42,12 +42,12 @@ export const SetMoney = (money: number) => ({
     type: constants.SET_MONEY
 });
 
-export const SetHappinessTimer = (timerID: NodeJS.Timer) => ({
+export const SetHappinessTimer = (timerID: number) => ({
     timerID,
     type: constants.SET_HAPPINESS_TIMER
 });
 
-export const SetHungerTimer = (timerID: NodeJS.Timer) => ({
+export const SetHungerTimer = (timerID: number) => ({
     timerID,
     type: constants.SET_HUNGER_TIMER
 });

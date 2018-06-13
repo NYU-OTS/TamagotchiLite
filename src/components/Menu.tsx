@@ -11,15 +11,15 @@ import shovel from '../images/shovel.png'
 
 export interface IMenuProps{
     happiness: number,
-    happinessID: NodeJS.Timer,
+    happinessID: number | null,
     hunger: number, 
-    hungerID: NodeJS.Timer,
+    hungerID: number | null,
     money: number,    
 
     setHunger: (hunger: number) => void,
-    setHungerTimer: (timerID: NodeJS.Timer) => void,
+    setHungerTimer: (timerID: number) => void,
     setHappiness: (happiness: number) => void, 
-    setHappinessTimer: (timerID: NodeJS.Timer) => void,
+    setHappinessTimer: (timerID: number) => void,
     setMoney: (money: number) => void,
     feed: () => void,
     play: () => void,
@@ -36,22 +36,18 @@ class Menu extends React.Component<IMenuProps, {}> {
         this.props.play.bind(this);
         this.props.heal.bind(this);
         this.props.work.bind(this);
-        this.props.depleteHunger.bind(this);
-        this.props.depleteHappiness.bind(this);
+
     }
 
       // Decrement the pet's hunger and happiness values over time
     public componentDidMount() {
-        const timerId = setInterval( this.props.depleteHappiness, 1000);
-        this.props.setHappinessTimer(timerId);
+        this.props.setHappinessTimer( window.setInterval( () => { this.props.depleteHappiness();  }, 1000) );
     }
 
     public componentWillUnmount() {
-        /*
-        if(this.props.happinessID) {
+        if(this.props.happinessID){
             clearInterval(this.props.happinessID);
         }
-        */
     }
 
 
@@ -94,9 +90,9 @@ const mapStateToProps = (state:any) => ({
 const mapDispatchToProps = (dispatch: (action: any) => void) => {
     return{
         setHappiness: (happiness: number) => dispatch(SetHappiness(happiness)),
-        setHappinessTimer: (timerID: NodeJS.Timer) => dispatch(SetHappinessTimer(timerID)),
+        setHappinessTimer: (timerID: number) => dispatch(SetHappinessTimer(timerID)),
         setHunger: (hunger: number) => dispatch(SetHunger(hunger)),
-        setHungerTimer: (timerID: NodeJS.Timer) => dispatch(SetHungerTimer(timerID)),
+        setHungerTimer: (timerID: number) => dispatch(SetHungerTimer(timerID)),
         setMoney: (money: number) => dispatch(SetMoney(money))
 
     }
