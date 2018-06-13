@@ -20,6 +20,15 @@ export interface IMenuDispatchProps {
     setMoney: (money: number) => void
 }
 
+export interface IMenuMergeProps {
+    feed: () => void,
+    play: () => void,
+    work: () => void,
+    heal: () => void,
+    depleteHunger: () => void,
+    depleteHappiness: () => void
+}
+
 export interface IMenuStateProps { 
     happiness: number,
     happinessID: number | null,

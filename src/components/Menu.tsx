@@ -8,27 +8,9 @@ import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'
 import shovel from '../images/shovel.png'
-import {IMenuDispatchProps, IMenuStateProps, IStoreState} from '../types/Types'
+import {IMenuDispatchProps, IMenuMergeProps, IMenuStateProps, IStoreState} from '../types/Types'
 
-export interface IMenuProps{
-    happiness: number,
-    happinessID: number | null,
-    hunger: number, 
-    hungerID: number | null,
-    money: number,    
-
-    setHunger: (hunger: number) => void,
-    setHungerTimer: (timerID: number) => void,
-    setHappiness: (happiness: number) => void, 
-    setHappinessTimer: (timerID: number) => void,
-    setMoney: (money: number) => void,
-    feed: () => void,
-    play: () => void,
-    work: () => void,
-    heal: () => void,
-    depleteHunger: () => void,
-    depleteHappiness: () => void
-}
+export type IMenuProps = IMenuStateProps & IMenuDispatchProps & IMenuMergeProps;
 
 class Menu extends React.Component<IMenuProps, {}> {
     constructor(props: IMenuProps){
@@ -42,7 +24,7 @@ class Menu extends React.Component<IMenuProps, {}> {
       // Decrement the pet's hunger and happiness values over time
     public componentDidMount() {
         this.props.setHappinessTimer( window.setInterval( () => { this.props.depleteHappiness();  }, 5000) );
-        this.props.setHungerTimer (window.setInterval( () => { this.props.depleteHunger();  }, 5000) );
+        this.props.setHungerTimer (window.setInterval( () => { this.props.depleteHunger();  }, 3000) );
     }
 
     public componentWillUnmount() {
@@ -98,11 +80,10 @@ const mapDispatchToProps = (dispatch: (action: any) => void):IMenuDispatchProps 
         setHunger: (hunger: number) => dispatch(SetHunger(hunger)),
         setHungerTimer: (timerID: number) => dispatch(SetHungerTimer(timerID)),
         setMoney: (money: number) => dispatch(SetMoney(money))
-
     }
   }
   
-  const mergeProps = (sp: IStoreState, dp: IMenuDispatchProps, op: any) => {
+  const mergeProps = (sp: IStoreState, dp: IMenuDispatchProps, op: {}) => {
       return {...sp, ...dp, ...op, 
       feed: () => {
         if (sp.hunger < 10 && sp.hunger >= 0 && sp.money > 0){
