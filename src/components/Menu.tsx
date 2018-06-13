@@ -8,6 +8,7 @@ import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'
 import shovel from '../images/shovel.png'
+import {IStoreState} from '../types/Types'
 
 export interface IMenuProps{
     happiness: number,
@@ -41,12 +42,16 @@ class Menu extends React.Component<IMenuProps, {}> {
 
       // Decrement the pet's hunger and happiness values over time
     public componentDidMount() {
-        this.props.setHappinessTimer( window.setInterval( () => { this.props.depleteHappiness();  }, 1000) );
+        this.props.setHappinessTimer( window.setInterval( () => { this.props.depleteHappiness();  }, 5000) );
+        this.props.setHungerTimer (window.setInterval( () => { this.props.depleteHunger();  }, 5000) );
     }
 
     public componentWillUnmount() {
-        if(this.props.happinessID){
+        if (this.props.happinessID){
             clearInterval(this.props.happinessID);
+        }
+        if (this.props.hungerID){
+            clearInterval(this.props.hungerID);
         }
     }
 
@@ -78,7 +83,7 @@ class Menu extends React.Component<IMenuProps, {}> {
     }
 }
 
-const mapStateToProps = (state:any) => ({
+const mapStateToProps = (state:IStoreState) => ({
     happiness: state.happiness,
     happinessID: state.happinessID,
     hunger: state.hunger,
@@ -101,14 +106,14 @@ const mapDispatchToProps = (dispatch: (action: any) => void) => {
   const mergeProps = (sp: any, dp: any, op: any) => {
     return {...sp, ...dp, ...op, 
       feed: () => {
-        if (sp.hunger < 10 && sp.hunger > 0 && sp.money > 0){
+        if (sp.hunger < 10 && sp.hunger >= 0 && sp.money > 0){
             dp.setHunger(sp.hunger + 1);
             dp.setMoney(sp.money - 1);
         }
       },
 
       play: () => {
-          if (sp.happiness < 10 && sp.happiness > 0 && sp.hunger > 0){
+          if (sp.happiness < 10 && sp.happiness >= 0){
               dp.setHappiness(sp.happiness + 1);
           }
 
@@ -125,8 +130,9 @@ const mapDispatchToProps = (dispatch: (action: any) => void) => {
         },
 
         heal: () => {
-            if (sp.hunger === 0 && sp.happiness === 0 && sp.money > 5){
+            if (sp.hunger === 0 && sp.happiness === 0 && sp.money >= 5){
                 dp.setHunger(sp.hunger + 5);
+                dp.setHappiness(sp.happiness + 5);
                 dp.setMoney(sp.money - 5);
             }
         },
