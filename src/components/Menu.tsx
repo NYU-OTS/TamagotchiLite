@@ -39,7 +39,6 @@ class Menu extends React.Component<IMenuProps, {}> {
         this.props.work.bind(this);
 
     }
-
       // Decrement the pet's hunger and happiness values over time
     public componentDidMount() {
         this.props.setHappinessTimer( window.setInterval( () => { this.props.depleteHappiness();  }, 5000) );
@@ -103,8 +102,16 @@ const mapDispatchToProps = (dispatch: (action: any) => void) => {
     }
   }
   
-  const mergeProps = (sp: any, dp: any, op: any) => {
-    return {...sp, ...dp, ...op, 
+interface IDispatchProps {
+    setHappiness: (happiness: number) => void,
+    setHappinessTimer: (timerID: number) => void,
+    setHunger: (hunger: number) => void,
+    setHungerTimer: (timerID: number) => void,
+    setMoney: (money: number) => void
+}
+
+  const mergeProps = (sp: IStoreState, dp: IDispatchProps, op: any) => {
+      return {...sp, ...dp, ...op, 
       feed: () => {
         if (sp.hunger < 10 && sp.hunger >= 0 && sp.money > 0){
             dp.setHunger(sp.hunger + 1);
