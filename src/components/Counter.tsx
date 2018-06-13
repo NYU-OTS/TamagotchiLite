@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {connect} from 'react-redux'
 
-import {IStoreState} from '../types/Types'
+import {IStateProps, IStoreState} from '../types/Types'
 
 export interface ICounterProps{
     hunger: number,
@@ -25,7 +25,7 @@ class Counter extends React.Component<ICounterProps, {}>{
     }
 }
 
-const mapStateToProps = (state:IStoreState) => {
+const mapStateToProps = (state:IStoreState): IStateProps => {
     return {
     happiness: state.happiness,  
     hunger: state.hunger,

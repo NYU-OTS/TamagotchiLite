@@ -7,11 +7,11 @@ import excited from '../images/_excited.png'
 import happy from '../images/_happy.png'
 import hungry from '../images/_hungry.png'
 import sick from '../images/_rip.png'
-import {IStoreState} from '../types/Types'
+import {IPetMapProps, IStoreState} from '../types/Types'
 
 
 export interface IPetProps{
-    face: any,
+    face: string,
     happiness: number,
     hunger: number
 }
@@ -30,7 +30,7 @@ class Pet extends React.Component<IPetProps, {}>{
 
 const faceSelector = createSelector(
     [(s: IStoreState) => s.hunger, (s: IStoreState) => s.happiness ],
-    (hunger: IStoreState["hunger"], happiness: IStoreState["happiness"]) => {
+    (hunger: IStoreState["hunger"], happiness: IStoreState["happiness"]): string => {
        if (hunger === 10 && happiness === 10){
            return excited;
        }
@@ -49,7 +49,7 @@ const faceSelector = createSelector(
     }
 )
 
-const mapStateToProps = (state:IStoreState) => ({
+const mapStateToProps = (state:IStoreState): IPetMapProps => ({
     face: faceSelector(state),
     happiness: state.happiness,
     hunger: state.hunger

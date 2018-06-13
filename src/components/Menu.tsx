@@ -8,7 +8,7 @@ import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'
 import shovel from '../images/shovel.png'
-import {IStoreState} from '../types/Types'
+import {IMenuDispatchProps, IStoreState} from '../types/Types'
 
 export interface IMenuProps{
     happiness: number,
@@ -82,7 +82,7 @@ class Menu extends React.Component<IMenuProps, {}> {
     }
 }
 
-const mapStateToProps = (state:IStoreState) => ({
+const mapStateToProps = (state:IStoreState): IStoreState => ({
     happiness: state.happiness,
     happinessID: state.happinessID,
     hunger: state.hunger,
@@ -91,7 +91,7 @@ const mapStateToProps = (state:IStoreState) => ({
 })
 
 
-const mapDispatchToProps = (dispatch: (action: any) => void) => {
+const mapDispatchToProps = (dispatch: (action: any) => void):IMenuDispatchProps  => {
     return{
         setHappiness: (happiness: number) => dispatch(SetHappiness(happiness)),
         setHappinessTimer: (timerID: number) => dispatch(SetHappinessTimer(timerID)),
@@ -102,15 +102,7 @@ const mapDispatchToProps = (dispatch: (action: any) => void) => {
     }
   }
   
-interface IDispatchProps {
-    setHappiness: (happiness: number) => void,
-    setHappinessTimer: (timerID: number) => void,
-    setHunger: (hunger: number) => void,
-    setHungerTimer: (timerID: number) => void,
-    setMoney: (money: number) => void
-}
-
-  const mergeProps = (sp: IStoreState, dp: IDispatchProps, op: any) => {
+  const mergeProps = (sp: IStoreState, dp: IMenuDispatchProps, op: any) => {
       return {...sp, ...dp, ...op, 
       feed: () => {
         if (sp.hunger < 10 && sp.hunger >= 0 && sp.money > 0){

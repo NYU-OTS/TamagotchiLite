@@ -7,6 +7,8 @@ import Header from './Header'
 import Menu from './Menu'
 import Pet from './Pet'
 
+import {IStateProps, IStoreState} from '../types/Types'
+
 export interface IProps{
   hunger: number,
   happiness: number,
@@ -29,7 +31,7 @@ class App extends React.Component<IProps, {}> {
   }
 }
 
-const mapStateToProps = (state:any) => ({
+const mapStateToProps = (state:IStoreState):IStateProps => ({
   happiness: state.happiness,
   hunger: state.hunger,
   money: state.money
