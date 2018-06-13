@@ -20,6 +20,13 @@ export interface IMenuDispatchProps {
     setMoney: (money: number) => void
 }
 
+export interface IMenuStateProps { 
+    happiness: number,
+    happinessID: number | null,
+    hunger: number,
+    hungerID: number | null,
+    money: number
+}
 export interface IPetMapProps{
     face: string,
     happiness: number,

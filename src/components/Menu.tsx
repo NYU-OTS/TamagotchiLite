@@ -8,7 +8,7 @@ import medicine from '../images/medicine.png'
 import toy from '../images/play.png'
 import riceball from '../images/riceball.png'
 import shovel from '../images/shovel.png'
-import {IMenuDispatchProps, IStoreState} from '../types/Types'
+import {IMenuDispatchProps, IMenuStateProps, IStoreState} from '../types/Types'
 
 export interface IMenuProps{
     happiness: number,
@@ -82,7 +82,7 @@ class Menu extends React.Component<IMenuProps, {}> {
     }
 }
 
-const mapStateToProps = (state:IStoreState): IStoreState => ({
+const mapStateToProps = (state:IStoreState): IMenuStateProps => ({
     happiness: state.happiness,
     happinessID: state.happinessID,
     hunger: state.hunger,
