@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-class Header extends React.PureComponent{
+class Header extends React.PureComponent<{}, {}>{
     public render(){
         return(
             <header className="component-header">

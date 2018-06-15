@@ -1,21 +1,18 @@
-import * as React from 'react'
+import * as React from 'react';
+import {HashRouter, Route} from 'react-router-dom';
 
-import './App.css'
-import Header from './Header'
-
-import Counter from '../Counter/CounterContainer'
-import Menu from '../Menu/MenuContainer'
-import Pet from '../Pet/PetContainer'
+import HowTo from './HowTo';
+import MainComponent from './MainComponent';
 
 class App extends React.Component<{}, {}> {
-  public render() {
+  public render(): any {
     return (
-      <div className="App">
-        <Header />
-        <Pet />
-        <Counter />
-        <Menu />
-      </div>
+      <HashRouter>
+        <div>
+          <Route path='/' component={MainComponent} />
+          <Route path="/howto" component={HowTo} />
+        </div>
+      </HashRouter>
     );
   }
 }

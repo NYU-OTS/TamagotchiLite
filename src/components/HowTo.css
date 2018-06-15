@@ -1,0 +1,13 @@
+#instructions h1{
+    text-align:center;
+}
+
+#instructions {
+    margin: auto;
+    padding: 2%;
+    width:80vw;
+}
+
+.bolded {
+    font-weight: bold;
+}
