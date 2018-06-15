@@ -1,10 +1,11 @@
 import * as React from 'react'
 
 import './App.css'
-import Counter from './Counter'
 import Header from './Header'
-import Menu from './Menu'
-import Pet from './Pet'
+
+import Counter from '../Counter/CounterContainer'
+import Menu from '../Menu/MenuContainer'
+import Pet from '../Pet/PetContainer'
 
 class App extends React.Component<{}, {}> {
   public render() {

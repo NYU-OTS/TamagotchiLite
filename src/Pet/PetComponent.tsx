@@ -1,5 +1,4 @@
 import * as React from 'react'
-import {connect} from 'react-redux'
 import {createSelector} from 'reselect'
 
 import bored from '../images/_bored.png'
@@ -7,7 +6,7 @@ import excited from '../images/_excited.png'
 import happy from '../images/_happy.png'
 import hungry from '../images/_hungry.png'
 import sick from '../images/_rip.png'
-import {IPetMapProps, IStoreState} from '../types/Types'
+import {IStoreState} from '../types/Types'
 
 
 export interface IPetProps{
@@ -16,7 +15,7 @@ export interface IPetProps{
     hunger: number
 }
 
-class Pet extends React.Component<IPetProps, {}>{
+export class PetComponent extends React.Component<IPetProps, {}>{
     constructor(props: IPetProps){
         super(props);
     }
@@ -28,7 +27,7 @@ class Pet extends React.Component<IPetProps, {}>{
     }
 }
 
-const faceSelector = createSelector(
+export const faceSelector = createSelector(
     [(s: IStoreState) => s.hunger, (s: IStoreState) => s.happiness ],
     (hunger: IStoreState["hunger"], happiness: IStoreState["happiness"]): string => {
        if (hunger === 10 && happiness === 10){
@@ -48,11 +47,3 @@ const faceSelector = createSelector(
        }
     }
 )
-
-const mapStateToProps = (state:IStoreState): IPetMapProps => ({
-    face: faceSelector(state),
-    happiness: state.happiness,
-    hunger: state.hunger
-})
-
-export default connect(mapStateToProps)(Pet)
