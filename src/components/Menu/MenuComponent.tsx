@@ -1,12 +1,13 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import './Menu.css'
+import './Menu.css';
 
-import medicine from '../images/medicine.png'
-import toy from '../images/play.png'
-import riceball from '../images/riceball.png'
-import shovel from '../images/shovel.png'
-import {IMenuDispatchProps, IMenuMergeProps, IMenuStateProps} from '../types/Types'
+import medicine from '../images/medicine.png';
+import toy from '../images/play.png';
+import riceball from '../images/riceball.png';
+import shovel from '../images/shovel.png';
+
+import {IMenuDispatchProps, IMenuMergeProps, IMenuStateProps} from '../../types/Types';
 
 export type IMenuProps = IMenuStateProps & IMenuDispatchProps & IMenuMergeProps;
 

@@ -1,9 +1,9 @@
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 
-import MenuComponent from './MenuComponent'
+import MenuComponent from './MenuComponent';
 
-import {SetHappiness, SetHappinessTimer, SetHunger, SetHungerTimer, SetMoney} from '../actions/Actions'
-import {IMenuDispatchProps, IMenuStateProps, IStoreState} from '../types/Types'
+import {SetHappiness, SetHappinessTimer, SetHunger, SetHungerTimer, SetMoney} from '../../actions/Actions';
+import {IMenuDispatchProps, IMenuStateProps, IStoreState} from '../../types/Types';
 
 const mapStateToProps = (state:IStoreState): IMenuStateProps => ({
     happiness: state.happiness,

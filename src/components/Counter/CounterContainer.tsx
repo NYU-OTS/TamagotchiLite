@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 
 import CounterComponent from './CounterComponent'
 
-import {IStateProps, IStoreState} from '../types/Types'
+import {IStateProps, IStoreState} from '../../types/Types';
 
 const mapStateToProps = (state:IStoreState): IStateProps => {
     return {

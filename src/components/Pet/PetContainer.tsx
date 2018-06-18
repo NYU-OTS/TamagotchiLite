@@ -1,7 +1,7 @@
-import {connect} from 'react-redux'
-import {faceSelector, PetComponent} from './PetComponent'
+import {connect} from 'react-redux';
+import {faceSelector, PetComponent} from './PetComponent';
 
-import {IPetMapProps, IStoreState} from '../types/Types'
+import {IPetMapProps, IStoreState} from '../../types/Types';
 
 const mapStateToProps = (state:IStoreState): IPetMapProps => ({
     face: faceSelector(state),
