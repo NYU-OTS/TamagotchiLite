@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css'
 import HowTo from './HowTo';
 import MainComponent from './MainComponent'
-import Nav from './Nav'
+import Nav from './Navigation'
 
 
 class App extends React.Component<{}, {}> {
