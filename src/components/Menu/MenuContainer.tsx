@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 
 import MenuComponent from './MenuComponent';
 
-import {SetHappiness, SetHappinessTimer, SetHunger, SetHungerTimer, SetMoney} from '../../actions/Actions';
+import {ActionTypes, SetHappiness, SetHappinessTimer, SetHunger, SetHungerTimer, SetMoney} from '../../actions/Actions';
 import {IMenuDispatchProps, IMenuStateProps, IStoreState} from '../../types/Types';
 
 const mapStateToProps = (state:IStoreState): IMenuStateProps => ({
@@ -14,7 +14,7 @@ const mapStateToProps = (state:IStoreState): IMenuStateProps => ({
 })
 
 
-const mapDispatchToProps = (dispatch: (action: any) => void):IMenuDispatchProps  => {
+const mapDispatchToProps = (dispatch: (action: ActionTypes) => void):IMenuDispatchProps  => {
     return{
         setHappiness: (happiness: number) => dispatch(SetHappiness(happiness)),
         setHappinessTimer: (timerID: number) => dispatch(SetHappinessTimer(timerID)),

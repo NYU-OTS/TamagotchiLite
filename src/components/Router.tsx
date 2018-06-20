@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom';
 import App from './App';
 
 class Router extends React.Component<{}, {}> {
-  public render(): any {
+  public render() {
     return (
       <BrowserRouter>
         <App />
