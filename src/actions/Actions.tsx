@@ -27,27 +27,27 @@ export interface ISetHungerTimer{
 
 
 
-export const SetHunger = (hunger: number) => ({
+export const SetHunger = (hunger: number): ISetHunger => ({
     hunger,
     type: constants.SET_HUNGER
 });
 
-export const SetHappiness = (happiness: number) => ({
+export const SetHappiness = (happiness: number): ISetHappiness => ({
     happiness,
     type: constants.SET_HAPPINESS
 });
 
-export const SetMoney = (money: number) => ({
+export const SetMoney = (money: number): ISetMoney => ({
     money,
     type: constants.SET_MONEY
 });
 
-export const SetHappinessTimer = (timerID: number) => ({
+export const SetHappinessTimer = (timerID: number): ISetHappinessTimer => ({
     timerID,
     type: constants.SET_HAPPINESS_TIMER
 });
 
-export const SetHungerTimer = (timerID: number) => ({
+export const SetHungerTimer = (timerID: number): ISetHungerTimer => ({
     timerID,
     type: constants.SET_HUNGER_TIMER
 });
