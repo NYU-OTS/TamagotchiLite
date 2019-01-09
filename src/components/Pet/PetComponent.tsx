@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {createSelector} from 'reselect';
 
-import bored from '../images/_bored.png';
-import excited from '../images/_excited.png';
-import happy from '../images/_happy.png';
-import hungry from '../images/_hungry.png';
-import sick from '../images/_rip.png';
+import bored from '../../images/_bored.png';
+import excited from '../../images/_excited.png';
+import happy from '../../images/_happy.png';
+import hungry from '../../images/_hungry.png';
+import sick from '../../images/_rip.png';
 
 import {IStoreState} from '../../types/Types';
 
